@@ -27,8 +27,8 @@
             /*border: 1px solid blueviolet;*/
         }
         .top_table_div {
-            display: table;
-            height: 100px;
+            /*display: block;
+            height: 100px;*/
         }
         .logo {
             overflow: hidden;
@@ -58,7 +58,7 @@
         .logo_blum {
             overflow: hidden;
             /*display: flex;*/
-            display: table-cell;
+            display: block;
             float: left;
             height: 80px;
             width: 100px;
@@ -66,9 +66,36 @@
             padding-top: 18px;
             vertical-align: middle;
         }
+
+
         .logo_blum img {
             vertical-align: top;
             height: 50px;
+        }
+        .logo_youtube {
+            /*
+            overflow: hidden;
+            display: table-cell;
+            float: left;
+            height: 80px;
+            width: 300px;
+            padding-right: 30px;
+            padding-top: 18px;
+            vertical-align: middle;*/
+            display: block;
+            /*margin-left: auto;
+            margin-right: auto;*/
+            margin-left: 10px;
+            margin-right: 50px;
+            height: 80px;
+        }
+
+        .logo_youtube img {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            padding-top: 27px;
+            height: 30px;
         }
 
 
@@ -262,19 +289,9 @@
         <div class="top_table_div">
             <div class="logo"><img src="/image/base/kdm_logo.png" alt="Комплектующие для мебели" title="Комплектующие для мебели" data-src=""></div>
             <div class="logo_blum"><a href="https://www.blum.com/ru/ru/contact/distributor-addresses/"><img src="/image/base/blum_logo.png" alt="Blum" title="Blum"></a></div>
-            <!-- <div class="logo_search">
-                <input type="text" class="form-control" name="q" id="title-search-input" value="" placeholder="" autocomplete="off">
-                <button type="submit" class="btn"><i class="icon small icon-search"></i></button>
-                <div id="title-search">
-                    <form action="/category/search/" class="search-form">
-                        <div class="search-query">
-                            <input type="text" class="form-control" name="q" id="title-search-input" value="" placeholder="" autocomplete="off">
-                            <button type="submit" class="btn"><i class="icon small icon-search"></i></button>
-                        </div>
-                    </form>
-                </div-->
-            </div> -->
+            <div class="logo_youtube"><a href="https://www.youtube.com/channel/UCU30JIN8KmWt3hiUWyYb_Bw"><img src="/image/base/youtube_logo.png" alt="youtube"></a></div>
         </div>
+    </div>
         <div class="menu">
             <table style="">
                 <tbody>
@@ -688,7 +705,10 @@
                        <td class="contact_phone_table_td">
                            +7 (4752) 21-22-33<br>
                            212233@kdm24.ru<br>
-                           <a href="https://www.kdm24.ru/">https://www.kdm24.ru/</a>
+                           <a href="https://www.kdm24.ru/">https://www.kdm24.ru/</a><br>
+                           <a href="https://www.vkuhnu.ru">https://www.vkuhnu.ru</a><br>
+                           <a href="https://www.itkt.ru/">https://www.itkt.ru/</a><br>
+
                        </td>
                        <td class="td_contact">
                            <table class="social_networks">
