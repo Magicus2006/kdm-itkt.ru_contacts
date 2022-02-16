@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="ru-RU">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <title>Калькулятор Aventos</title>
+    <link rel="shortcut icon" href="/favicon.png" type="image/x-icon">
+    <link href="/style/base-first.css" rel="stylesheet">
+
+    <style>
+        #myModal {
+            width: 320px; height: 140px;
+            padding: 0px 0px;
+            border-radius: 4px;
+            background: #fafafa;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            margin: auto;
+            display: none;
+            opacity: 0;
+            z-index: 38;
+            text-align: center;
+
+        }
+        .table_discount input[type=radio] {
+            margin-right: 0;
+            margin-left: 0;
+            width: 20px;
+            height: 20px;
+        }
+        #myOverlay {
+            z-index: 37;
+            position: fixed;
+            background: rgba(0, 0, 0, .7);
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            cursor: pointer;
+            display: none;
+        }
+
+        .calculator {
+            width: 290px;
+            border-top: 1px solid #ccc;
+            border-left: 1px solid #ccc;
+        }
+        .table_result_css {
+            font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif;
+            width: 500px;
+        //border-top: 1px solid #ccc;
+        //border-left: 1px solid #ccc;
+        }
+        .table_discount {
+            font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif;
+            width: 320px;
+        //border-top: 1px solid #ccc;
+        //border-left: 1px solid #ccc;
+        }
+        .table_discount td {
+            border: 1px solid #f17336;
+        //border-bottom: 1px solid #000000;
+        //border-right: 1px solid #000000;
+        //border-left: 1px solid #000000;
+        //border-top: 1px solid #000000;
+        //padding: 3px 8px 3px 8px;
+            text-align:center;
+        }
+
+        .table_discount th {
+            border-bottom: 1px solid #f17336;
+            border-right: 1px solid #f17336;
+            border-left: 1px solid #f17336;
+            border-top: 1px solid #f17336;
+            background: #f17336;
+            padding: 8px 0px 8px 0px;
+            color: #fff;
+            font-weight: bold;
+        //font-size: 15px;
+        }
+
+        .table_discount th.menu_button:hover {
+        //background-color: #e2e2dd;
+            cursor: pointer;
+        }
+
+        .table_discount td.head {
+            font-weight: bold;
+            font-size: 14px;
+            white-space: nowrap;
+            width: 150px;
+        }
+        .table_discount td input {
+            width: 40px !important;
+            border: 1px solid #999;
+        }
+
+
+
+        .calculator th {
+            border-bottom: 1px solid #ccc;
+            border-right: 1px solid #ccc;
+            padding: 3px 8px 3px 8px;
+        }
+
+        .table_result_css td {
+            border: 1px solid #f17336;
+        //border-bottom: 1px solid #000000;
+        //border-right: 1px solid #000000;
+        //border-left: 1px solid #000000;
+        //border-top: 1px solid #000000;
+            padding: 3px 8px 3px 8px;
+            text-align:center;
+        }
+
+        .table_result_css th {
+            border-bottom: 1px solid #f17336;
+            border-right: 1px solid #f17336;
+            border-left: 1px solid #f17336;
+            border-top: 1px solid #f17336;
+            background: #f17336;
+            padding: 8px 0px 8px 0px;
+            color: #fff;
+            font-weight: normal;
+        //font-size: 15px;
+        }
+
+        .table_result_css th.menu_button:hover {
+        //background-color: #e2e2dd;
+            cursor: pointer;
+        }
+        .parent:table_result_css th .head_table {
+            border-bottom: 1px solid #f17336;
+            border-right: 1px solid #f17336;
+            border-left: 1px solid #f17336;
+            border-top: 1px solid #f17336;
+            background: #f17336;
+            padding: 8px 0px 8px 0px;
+            color: #000000;
+        //font-size: 15px;
+        }
+
+        .calculator td, .calculator th {
+            border-bottom: 1px solid #ccc;
+            border-right: 1px solid #ccc;
+            padding: 3px 8px 3px 8px;
+        }
+
+        .calculator th {
+            background: #f17336;
+            padding: 8px 0px 8px 0px;
+            color: #fff;
+            font-size: 15px;
+        }
+
+        .calculator td.head {
+            font-weight: bold;
+            font-size: 12px;
+            white-space: nowrap;
+            width: 93px;
+        }
+
+        .calculator td input {
+            width: 80px !important;
+            border: 1px solid #999;
+        }
+
+        .calculator td.result, td.result_km {
+            color: green;
+            font-size: 12px;
+            text-align: center;
+        }
+
+        .form_image {
+            padding-left: 20px
+        }
+
+        .CalcPad {
+            margin: 20px;
+        }
+
+        .PlotnostSel {
+            width: 80px;
+        }
+        .red_text {
+            color: red;
+        }
+
+    </style>
+</head>
+<body>
+<div id="header">
+    <div class="header_start">
+        <img src="/image/base/kdm_logo.png" alt="Комплектующие для мебели" title="Комплектующие для мебели" width="192px"
+             height="47px">
+        <a href="https://www.blum.com/ru/ru/contact/distributor-addresses/">
+            <img src="/image/base/blum_logo.png" alt="Blum" title="Blum" data-src="" width="108px" height="47px">
+        </a>
+    </div>
+    <div class="header_center">
+        <div class="header_center_contaner">
+        <a href="https://www.youtube.com/channel/UCU30JIN8KmWt3hiUWyYb_Bw">
+            <img src="/image/base/youtube_logo.png" alt="youtube" height="47px" width=210px">
+        </a>
+        </div>
+    </div>
+    <div class="header_end"></div>
+</div>
+<div id="menu_main">
+    <ul>
+        <li><a href="http://util.kdm-itkt.ru/static/calc2.html">Калькулятор</a></li>
+        <li><a href="/contacts/">Контакты</a></li>
+    </ul>
+</div>
+<div id="wraps_hover_none">
+    <script type="text/javascript">
+        // var
+        let facade_width =  [400, 450, 500, 550, 600, 700, 800, 900, 1000, 1200, 1500, 1800];
+        let facede_height = [300, 350, 400, 450, 500, 550, 600, 650, 700, 750, 800, 850, 900, 950, 1000, 1040];
+        var euro = 0.0;
+        var tipon = false;
+        var nationalCurrency = false;
+        var discount_one = 0;
+        var discount_two = 0;
+        var keys = {};
+
+        $(document).keydown(function(e) {
+            keys[e.which] = true;
+
+            if (keys[17] && keys[18] && keys[49]) { // Ctrl + Alt + 1 in that order
+                console.log("pressed");
+                $('#myOverlay').fadeIn(297, function () {
+                    $('#myModal')
+                        .css('display', 'block')
+                        .animate({opacity: 1}, 198);
+                });
+
+            }
+        });
+        $(document).keyup(function (e) {
+            delete keys[e.which];
+        });
+
+        $(function () {
+
+            var PlotnArray = Array();
+
+
+            PlotnArray[0] = {'PLOTN': 760, 'NAME': 'МДФ', 'USE_GLASS': false, 'PICTURE_ID': 'mdf'};
+            PlotnArray[1] = {'PLOTN': 680, 'NAME': 'ДСП', 'USE_GLASS': false, 'PICTURE_ID': 'dsp'};
+
+            var handleWeight = Array();
+            handleWeight[0] = {'name': 'Not handle', 'handleWeight': 0}
+            handleWeight[1] = {'name': 'Min handle', 'handleWeight': 0.1}
+            handleWeight[2] = {'name': 'Min2 handle', 'handleWeight': 0.2}
+            handleWeight[3] = {'name': 'Middle handle', 'handleWeight': 0.5}
+            handleWeight[4] = {'name': 'Heavy handle', 'handleWeight': 1}
+
+
+
+
+            function ShowPictureType() {
+                var plotnost = $("select[name=plotnost]").val();
+
+                $(".form_image div").css("display", "none");
+                $("#" + PlotnArray[plotnost]['PICTURE_ID']).css("display", "block");
+            }
+
+            // устанавливаем начальное значение толщины в зависимости от плотности материала
+            function SetTolsh() {
+                var plotnost = $("select[name=plotnost]").val();
+
+                // устанавливаем значение толщины по умолчанию для материала
+                if (plotnost == 0 || plotnost == 4) {
+                    $("input[name=tolsh]").val(16);
+                }
+                if (plotnost == 1) {
+                    $("input[name=tolsh]").val(16);
+                }
+                if (plotnost == 2 || plotnost == 3) {
+                    $("input[name=tolsh]").val(16);
+                }
+            }
+
+            // скрывает или показывает поля для дополнительного расчета стекла
+            function ShowHideGlassFields() {
+                var plotnost = $("select[name=plotnost]").val();
+                var bUseGlass = PlotnArray[plotnost]['USE_GLASS'];
+
+                if (bUseGlass) {
+                    $(".redHeader").css("visibility", "visible");
+                    $(".ForStCalc").css("display", "block");
+                    $(".materialHeader").html(PlotnArray[plotnost]['NAME']);
+                } else {
+                    $(".redHeader").css("visibility", "hidden");
+                    $(".ForStCalc").css("display", "none");
+                }
+            }
+
+            // расчитывает вес материала
+            function CalculateMaterial() {
+                //var plotnost = parseFloat($("select[name=plotnost]").val().toString().replace(/,/, "."));
+                var plotnost = parseFloat($("input[name=plotnostInput]").val().toString().replace(/,/, "."));
+                var tolsh = parseFloat($("input[name=tolsh]").val().toString().replace(/,/, "."));
+                var width = parseFloat($("input[name=width]").val().toString().replace(/,/, "."));
+                var height = parseFloat($("input[name=height]").val().toString().replace(/,/, "."));
+                var handleWeightVar = parseFloat($("select[name=handleWeight]").val().toString().replace(/,/, "."));
+                var ves = 0;
+
+                ves = parseFloat((tolsh / 1000) * (width / 1000) * (height / 1000) * plotnost);
+                ves += handleWeight[handleWeightVar]['handleWeight']
+                GetAventosTypesAvalide(plotnost, tolsh, width, height, handleWeightVar)
+                return ves;
+            }
+            // Мой расчитывает вес материала
+            function CalculateMaterialMy(height, width) {
+                //var plotnost = parseFloat($("select[name=plotnost]").val().toString().replace(/,/, "."));
+                var plotnost = parseFloat($("input[name=plotnostInput]").val().toString().replace(/,/, "."));
+                var tolsh = parseFloat($("input[name=tolsh]").val().toString().replace(/,/, "."));
+                var handleWeightVar = parseFloat($("select[name=handleWeight]").val().toString().replace(/,/, "."));
+
+                //var my_width = parseFloat( $("input[name=width]").val().toString().replace(/,/, "."));
+                //var my_height = parseFloat($("input[name=height]").val().toString().replace(/,/, "."));
+                var ves = 0;
+
+                ves = parseFloat((tolsh / 1000) * (width / 1000) * (height / 1000) * plotnost);
+                ves += handleWeight[handleWeightVar]['handleWeight']
+                return ves;
+            }
+
+            // расчитывает вес стекла
+            function CalculateSteclo() {
+                var tolsh = parseFloat($("input[name=st_tolsh]").val().toString().replace(/,/, "."));
+                var width = parseFloat($("input[name=st_width]").val().toString().replace(/,/, "."));
+                var height = parseFloat($("input[name=st_height]").val().toString().replace(/,/, "."));
+                var ves = 0;
+
+                ves = parseFloat((tolsh * width * height / 1000000) * PlotnArray[1]['PLOTN']);
+
+                return ves;
+            }
+
+            function createTableFacadeResult() {
+
+                var content= '<table class="table_result_css"><tr><th rowspan="2">Высота фасада</th><th colspan="'+facade_width.length+'">Ширина фасада</th></tr><tr>'
+
+                facade_width.forEach(function(item, i, facade_width) {
+                    content += '<th>'+item+'</th>'
+                });
+                content += '</tr>'
+
+                for (index = 0; index < facede_height.length; ++index) {
+                    content += '<tr><th>'+facede_height[index]+'</th>'
+                    facade_width.forEach(function(item, i, facade_width) {
+                        var km = (CalculateMaterialMy(facede_height[index], item)*facede_height[index]).toFixed(0)
+                        //if (km > 17250) {
+                        //    km = '-'
+                        //}
+                        content += '<td>'+km+'</td>'
+                    });
+                    content += '</tr>'
+                }
+
+                content += '</table>'
+                $('#table_result').html(content);
+            }
+
+            // Запрос к серверу на получение комплектов подемников
+            function GetAventosTypesAvalide(plotnost, tolsh, width, height, handleWeightVar) {
+                data = {"handleWeight": handleWeightVar, "height": height, "thickness": tolsh, "width": width, "density": plotnost};
+                url = "http://util.kdm-itkt.ru/api/v2/aventos/"
+                $.ajax({
+                    'type': 'POST',
+                    'url': url,
+                    'contentType': 'application/json',
+                    'data': JSON.stringify(data),
+                    'dataType': 'json',
+                    'success': function(response){
+                        //alert("Data Loaded: " + JSON.stringify(response));
+
+                        //CreateTableToAventosKits(response)
+                        CreateTableToAventosKits2(response)
+                    }
+                });
+            }
+
+            // Создание таблицы для вариантов комплектов подъемников
+            function CreateTableToAventosKits(response) {
+                var content='<table class="table_result_css">'
+                console.log(response)
+
+                for (var key in response) {
+                    content += '<tr><th colspan="4">'+key+'</th></tr>'
+                    content +='<tr>'
+                    for (index = 0; index < 2; ++index) {
+                        if (response[key][index] === undefined) {
+                            content+='<td>-</td><td>-</td>'
+                        } else {
+
+                            if (response[key][index] !== undefined) {
+                                var nameAventos = response[key][index]["name"]
+                                var costAventos = response[key][index]["cost"]
+                                console.log("nameAventos:"+nameAventos+"costAventos"+costAventos)
+                                content+='<td>'+nameAventos+'</td><td>'+costAventos+'€</td>'
+                            }
+                        }
+
+                    }
+                    content += '</tr>'
+                }
+                content += '</table>'
+                $("#divAventosTypes").html(content)
+            }
+            // Создание таблицы для вариантов комплектов подъемников VER 2
+            function CreateTableToAventosKits2(response) {
+                console.log(euro)
+                var content='<table class="table_result_css">'
+                var withTipon = ''
+                var withOutTipon = ''
+                if(tipon) {
+                    withTipon = 'style="text-decoration: underline"'
+                    withOutTipon = 'style="background-color: #e2e2dd"'
+                } else {
+                    withTipon = 'style="background-color: #e2e2dd"'
+                    withOutTipon = 'style="text-decoration: underline"'
+                }
+                content += '<tr><td style="border: #000000"></td>'
+                content += '<th id="btnWithOutTipOn" class="menu_button"'+ withOutTipon +'>BLUMOTION<br>(с доводчиком)</th>'
+                content += '<th id="btnWitTipOn" class="menu_button"'+ withTipon +'>TIP-ON<br>(открывание без ручки)</th>'
+                content += '<tr><th  style="color: #000000">Тип подъемника<br>AVENTOS</th><th style="color: #000000">Комплект</th><th style="color: #000000">Цена, <a href="javascript:void(0)" class="euro">€</a>, <a href="javascript:void(0)" class="rub">₽</a></th></tr>'
+                for (var kit in response) {
+                    console.log(kit, " len", response[kit].length)
+                    if(response[kit]["tipon"] == tipon) {
+                        if (response[kit]["set"].length > 1) {
+                            for (var index = 0; index < response[kit]["set"].length; ++index) {
+                                var nameAventos = response[kit]["set"][index]["name"]
+                                var costAventos = response[kit]["set"][index]["cost"]
+
+                                costAventos = costAventos*(1-(discount_one/100))
+                                costAventos = costAventos*(1-(discount_two/100))
+                                if(nationalCurrency){
+                                    costAventos = costAventos * euro
+                                    costAventos = costAventos.toFixed(2)
+                                    costAventos = costAventos + "₽"
+                                } else {
+                                    costAventos = costAventos.toFixed(2)
+                                    costAventos = costAventos + "€"
+                                }
+                                content += '<tr>'
+                                if (index == 0) {
+                                    content += '<th rowspan="' + response[kit]["set"].length + '">'
+                                    content += kit
+                                    content += '</th>'
+                                }
+                                content += '<td>'
+                                content += nameAventos
+                                content += '</td>'
+                                content += '<td>'
+                                content += costAventos
+                                content += '</td>'
+                                content += '</tr>'
+                            }
+                        } else {
+                            var index = 0
+                            var nameAventos = response[kit]["set"][index]["name"]
+                            var costAventos = response[kit]["set"][index]["cost"]
+                            costAventos = costAventos*(1-(discount_one/100))
+                            costAventos = costAventos*(1-(discount_two/100))
+                            if(nationalCurrency){
+                                costAventos = costAventos * euro
+                                costAventos = costAventos.toFixed(2)
+                                costAventos = costAventos + "₽"
+
+                            } else {
+                                costAventos = costAventos.toFixed(2)
+                                costAventos = costAventos + "€"
+                            }
+                            content += '<tr>'
+                            content += '<th>'
+                            content += kit
+                            content += '</th>'
+                            content += '<td>'
+                            content += nameAventos
+                            content += '</td>'
+                            content += '<td>'
+                            content += costAventos
+                            content += '</td>'
+                            content += '</tr>'
+                        }
+                    }
+                }
+                content += '</table>'
+                $("#divAventosTypesV2").html(content)
+
+                $('.euro').on("click",function(){
+                    nationalCurrency = false
+                    CreateTableToAventosKits2(response)
+                });
+                $('.rub').on("click",function(){
+                    nationalCurrency = true
+                    CreateTableToAventosKits2(response)
+                });
+                $('#btnWithOutTipOn').click(function(){
+                    tipon = false
+                    CreateTableToAventosKits2(response)
+                });
+                $('#btnWitTipOn').click(function(){
+                    tipon = true
+                    CreateTableToAventosKits2(response)
+                });
+                $('#myModal__close, #myOverlay').click(function () {
+                    discount_one = $('input[name="discount_radio"]:checked').val();
+                    discount_two = $("input[name=amount_discount]").val()
+                    CreateTableToAventosKits2(response)
+
+                    $('#myModal').animate({opacity: 0}, 198, function () {
+                        $(this).css('display', 'none');
+                        $('#myOverlay').fadeOut(297);
+                    });
+                });
+
+            }
+
+
+            // производит расчет и вывод результата
+            function Calculate() {
+                var plotnost = $("select[name=plotnost]").val();
+                var bUseGlass = PlotnArray[plotnost]['USE_GLASS'];
+                var ves = 0;
+
+                if (bUseGlass) {
+                    // alert(CalculateMaterial()+" "+CalculateSteclo());
+                    ves = CalculateMaterial() + CalculateSteclo();
+                } else {
+                    ves = CalculateMaterial();
+                }
+
+                $(".result").html(ves.toFixed(2));
+                var height = parseFloat($("input[name=height]").val().toString().replace(/,/, "."));
+                var km = ves * height
+                $(".result_km").html(km.toFixed(0));
+                createTableFacadeResult()
+
+            }
+            function setDefaultValue() {
+                $.getJSON("https://www.cbr-xml-daily.ru/daily_json.js", function(data) {
+                    //$('#EUR').text(data.Valute.EUR.Value.toFixed(2));
+                    euro = data.Valute.EUR.Value;
+                    console.log("Euro json: "+euro)
+                });
+                SetTolsh();
+                var plotnost = parseFloat($("select[name=plotnost]").val().toString().replace(/,/, "."));
+                $("input[name=plotnostInput]").val(PlotnArray[plotnost]['PLOTN']);
+                $("input[name=tolsh]").val(16);
+                $("input[name=width]").val(800);
+                $("input[name=height]").val(370);
+            }
+
+
+            $(".form_image div").css("display", "none");
+            $("#dsp").css("display", "block");
+
+            $(".calculator input").bind("change", function () {
+                Calculate();
+            })
+
+            $(".calculator select").bind("change", function () {
+                var plotnost = parseFloat($("select[name=plotnost]").val().toString().replace(/,/, "."));
+                $("input[name=plotnostInput]").val(PlotnArray[plotnost]['PLOTN']);
+                //ShowPictureType();
+                //setDefaultValue()
+
+                //ShowHideGlassFields();
+                Calculate();
+            });
+
+            // проводим инициализацию при загрузке страницы
+            //ShowPictureType();
+            setDefaultValue();
+            //ShowHideGlassFields();
+            Calculate();
+            createTableFacadeResult();
+        });
+    </script>
+    <div class="CalcPad">
+        <h2>Подбор комплекта AVENTOS в зависимости от размеров фасада</h2><br>
+
+        <table class="calculator">
+            <tbody><tr>
+                <th colspan="2">Расчет веса фасада</th>
+            </tr>
+            <tr>
+                <td class="head">Материал фасада, кг/м3</td>
+                <td>
+                    <select name="plotnost" class="PlotnostSel">
+                        <option value="0">МДФ</option>
+                        <option value="1">ДСП</option>
+                    </select>
+                    <input type="text" name="plotnostInput" value="0">
+                </td>
+            </tr>
+            <tr>
+                <td class="head">Толщина, мм</td>
+                <td><input type="text" name="tolsh" value="19"></td>
+            </tr>
+            <tr>
+                <td class="head">Вес ручки, кг</td>
+                <td>
+                    <select name="handleWeight" class="handleWeightClass">
+                        <option value="0">Без ручки</option>
+                        <option value="1">0,1 Легкая</option>
+                        <option value="2">0,2 Легкая</option>
+                        <option value="3">0,5 Средняя</option>
+                        <option value="4">1,0 Тяжелая</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td class="head">Высота, мм</td>
+                <td><input type="text" name="height" value="0"></td>
+            </tr>
+            <tr>
+                <td class="head">Ширина, мм</td>
+                <td><input type="text" name="width" value="0"></td>
+            </tr>
+            <tr>
+                <td class="head">Вес двери, кг</td>
+                <td class="result">0.00</td>
+            </tr>
+            <tr>
+                <td class="head">Коэффициент мощности, кг</td>
+                <td class="result_km">0</td>
+            </tr>
+            <tr>
+                <td colspan=2 class="head">
+                    Расчет веса фасадов (м) х Ширина фасада (м) х Толщина фасадов х Плотность(кг/м3)<br>
+                    <span class="red_text">Калькулятор носит рекомендательный характер!!!</span><br>
+                    Точный вес фасадов из различных материалов определяется взвешиванием.<br>
+                    При выборе силового механизма учитывайте вес ручки<br>
+                    AVENTOS HF, HL, HS + вес ручки<br>
+                    AVENTOS HK, HK-S, HK-XS + двойной вес ручки</td>
+            </tr>
+            </tbody></table>
+
+
+
+    </div>
+    <h2>Наш калькулятор автоматически предлагает, все типы подъемников,<br>подходящие под выбранные Вами характеристика фасада.</h2>
+    <div id="divAventosTypes"></div>
+    <!-- h2>Таблица для подбора коэффициента мощности вручную.</h2>
+    <div id="table_result"></div-->
+    <div id="divAventosTypesV2"></div>
+
+    </tr>
+    </table>
+
+    <div id="myModal">
+        <!-- span id="myModal__close" class="close">ₓ</span -->
+        <form>
+            <table class="table_discount">
+                <tbody>
+                <tr>
+                    <th colspan="2" style="color: #000000">Установить скидку</th>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input type="radio" name="discount_radio" value="0" checked> Розница
+                        <input type="radio" name="discount_radio" value="25">Юр. Лица
+                    </td>
+                </tr>
+                <tr>
+                    <td class="head">Поцент, %</td>
+                    <td>
+                        <input type="number" min="0" max="100" step="0.1" name="amount_discount" value="0">%
+                    </td>
+                </tr>
+                <tr>
+                    <th colspan="2" class="menu_button" id="myModal__close">Применить скидку</th>
+                </tr>
+                </tbody>
+            </table>
+        </form>
+    </div>
+    <div id="myOverlay"></div>
+
+</div>
+<div id="footer">
+    <p>2022 © "Комплектующие для мебели" - продажа фурнитуры для мебели</p>
+</div>
+</body>
+</html>
