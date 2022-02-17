@@ -10,63 +10,22 @@
     <link rel="shortcut icon" href="/favicon.png" type="image/x-icon">
     <link href="/style/base-first.css" rel="stylesheet">
 
-    <style>
-        #myModal {
-            width: 320px; height: 140px;
-            padding: 0px 0px;
-            border-radius: 4px;
-            background: #fafafa;
-            position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
-            margin: auto;
-            display: none;
-            opacity: 0;
-            z-index: 38;
-            text-align: center;
+    <!-- style>
 
-        }
-        .table_discount input[type=radio] {
-            margin-right: 0;
-            margin-left: 0;
-            width: 20px;
-            height: 20px;
-        }
-        #myOverlay {
-            z-index: 37;
-            position: fixed;
-            background: rgba(0, 0, 0, .7);
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            cursor: pointer;
-            display: none;
-        }
 
-        .calculator {
-            width: 290px;
-            border-top: 1px solid #ccc;
-            border-left: 1px solid #ccc;
-        }
+
         .table_result_css {
             font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif;
             width: 500px;
-        //border-top: 1px solid #ccc;
-        //border-left: 1px solid #ccc;
+
         }
         .table_discount {
             font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif;
             width: 320px;
-        //border-top: 1px solid #ccc;
-        //border-left: 1px solid #ccc;
+
         }
         .table_discount td {
             border: 1px solid #f17336;
-        //border-bottom: 1px solid #000000;
-        //border-right: 1px solid #000000;
-        //border-left: 1px solid #000000;
-        //border-top: 1px solid #000000;
-        //padding: 3px 8px 3px 8px;
             text-align:center;
         }
 
@@ -79,11 +38,9 @@
             padding: 8px 0px 8px 0px;
             color: #fff;
             font-weight: bold;
-        //font-size: 15px;
         }
 
         .table_discount th.menu_button:hover {
-        //background-color: #e2e2dd;
             cursor: pointer;
         }
 
@@ -108,10 +65,6 @@
 
         .table_result_css td {
             border: 1px solid #f17336;
-        //border-bottom: 1px solid #000000;
-        //border-right: 1px solid #000000;
-        //border-left: 1px solid #000000;
-        //border-top: 1px solid #000000;
             padding: 3px 8px 3px 8px;
             text-align:center;
         }
@@ -163,10 +116,7 @@
             width: 93px;
         }
 
-        .calculator td input {
-            width: 80px !important;
-            border: 1px solid #999;
-        }
+
 
         .calculator td.result, td.result_km {
             color: green;
@@ -188,6 +138,130 @@
         .red_text {
             color: red;
         }
+
+    </style-->
+    <!-- Table clculator -->
+    <style>
+        #myModal {
+            width: 320px; height: 140px;
+            padding: 0px 0px;
+            border-radius: 4px;
+            background: #fafafa;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            margin: auto;
+            display: none;
+            opacity: 0;
+            z-index: 38;
+            text-align: center;
+
+        }
+        .table_discount input[type=radio] {
+            margin-right: 0;
+            margin-left: 0;
+            width: 20px;
+            height: 20px;
+        }
+        #myOverlay {
+            z-index: 37;
+            position: fixed;
+            background: rgba(0, 0, 0, .7);
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            cursor: pointer;
+            display: none;
+        }
+
+
+    </style>
+    <style>
+        .shadow {
+            background: #ffffff; /* Цвет фона */
+            box-shadow: 0px 0px 10px rgba(0,0,0,.5);  /* Параметры тени */
+            padding: 0px;
+            border: 1px solid #adadad;
+            margin-left: 30px;
+        }
+        .bor-1 {
+            border: 1px solid #000000;
+        }
+        .title_div_table {
+            display: flex;
+            background-color: #fd7c47;
+            text-align: center;
+            align-items: center;
+            justify-content: center;
+            height: 40px;
+            margin-left: 5px;
+            font-weight: 600;
+
+        }
+        .row_gray {
+            display: flex;
+            align-items: center;
+            background-color: #484450;
+            color: white;
+
+        }
+        .options {
+            display: flex;
+            height: 40px;
+            text-align: center;
+            background-color: #ffb395;
+            align-items: center;
+            justify-content: center;
+            border-bottom: white solid 1px;
+            color: black;
+            margin-left: 5px;
+        }
+
+        .options_last-child {
+            border-bottom: 0 !important;
+        }
+        .options input {
+            width: 60px;
+
+        }
+        .options input[type=text] {
+            width: 60px;
+            font-size: 12px;
+            height: 20px;
+        }
+
+
+        .description {
+            font-size: 10px;
+            margin-top: 10px;
+        }
+
+        .row_max {
+            /*flex: 3;
+            flex-direction: column;
+            height: 700px;
+            flex-basis: 50px;*/
+        }
+        .red_text {
+            color: red;
+        }
+        .title_cal {
+            display: flex;
+            font-size: 24px;
+            font-weight: 700;
+            align-items: center;
+
+        }
+
+        .title_cal-2 {
+            display: flex;
+            font-size: 18px;
+            font-weight: 700;
+            align-items: center;
+
+        }
+
+
 
     </style>
 </head>
@@ -212,7 +286,7 @@
 <div id="menu_main">
     <ul>
         <li><a href="http://util.kdm-itkt.ru/static/calc2.html">Калькулятор</a></li>
-        <li><a href="/contacts/">Контакты</a></li>
+        <li><a href="/contacts">Контакты</a></li>
     </ul>
 </div>
 <div id="wraps_hover_none">
@@ -417,7 +491,8 @@
             // Создание таблицы для вариантов комплектов подъемников VER 2
             function CreateTableToAventosKits2(response) {
                 console.log(euro)
-                var content='<table class="table_result_css">'
+                //var content='<table class="table_result_css">'
+                var content=''
                 var withTipon = ''
                 var withOutTipon = ''
                 if(tipon) {
@@ -427,14 +502,27 @@
                     withTipon = 'style="background-color: #e2e2dd"'
                     withOutTipon = 'style="text-decoration: underline"'
                 }
-                content += '<tr><td style="border: #000000"></td>'
-                content += '<th id="btnWithOutTipOn" class="menu_button"'+ withOutTipon +'>BLUMOTION<br>(с доводчиком)</th>'
-                content += '<th id="btnWitTipOn" class="menu_button"'+ withTipon +'>TIP-ON<br>(открывание без ручки)</th>'
-                content += '<tr><th  style="color: #000000">Тип подъемника<br>AVENTOS</th><th style="color: #000000">Комплект</th><th style="color: #000000">Цена, <a href="javascript:void(0)" class="euro">€</a>, <a href="javascript:void(0)" class="rub">₽</a></th></tr>'
+                //content += '<tr><td style="border: #000000"></td>'
+                //content += '<th id="btnWithOutTipOn" class="menu_button"'+ withOutTipon +'>BLUMOTION<br>(с доводчиком)</th>'
+                //content += '<th id="btnWitTipOn" class="menu_button"'+ withTipon +'>TIP-ON<br>(открывание без ручки)</th>'
+
+                content += '<div class="row">\n' +
+                    '                <div class="col-xl-12 title_cal" >\n' +
+                    '                    <span>Результат расчета</span>\n' +
+                    '                </div>\n' +
+                    '            </div>' +
+                    '<div class="row"> ' +
+                    '<div class="col-xl-5 title_cal-2">Тип подъемника</div>' +
+                    '<div class="col-xl-3 title_div_table">Комплект</div>' +
+                    '<div class="col-xl-3 title_div_table">Цена</div>' +
+                    '</div>'
+
+                //content += '<tr><th  style="color: #000000">Тип подъемника<br>AVENTOS</th><th style="color: #000000">Комплект</th><th style="color: #000000">Цена, <a href="javascript:void(0)" class="euro">€</a>, <a href="javascript:void(0)" class="rub">₽</a></th></tr>'
                 for (var kit in response) {
                     console.log(kit, " len", response[kit].length)
                     if(response[kit]["tipon"] == tipon) {
                         if (response[kit]["set"].length > 1) {
+                            var options_last_child = ""
                             for (var index = 0; index < response[kit]["set"].length; ++index) {
                                 var nameAventos = response[kit]["set"][index]["name"]
                                 var costAventos = response[kit]["set"][index]["cost"]
@@ -449,19 +537,34 @@
                                     costAventos = costAventos.toFixed(2)
                                     costAventos = costAventos + "€"
                                 }
-                                content += '<tr>'
-                                if (index == 0) {
+                                //content += '<tr>'
+                                /*if (index == 0) {
                                     content += '<th rowspan="' + response[kit]["set"].length + '">'
                                     content += kit
                                     content += '</th>'
-                                }
-                                content += '<td>'
+                                }*/
+                                /*content += '<td>'
                                 content += nameAventos
                                 content += '</td>'
                                 content += '<td>'
                                 content += costAventos
                                 content += '</td>'
-                                content += '</tr>'
+                                content += '</tr>'*/
+                                /*if (index = response[kit]["set"].length-1) {
+                                    options_last_child = ""
+                                } else {
+                                    options_last_child = "options_last-child"
+                                }*/
+
+                                content += '<div class="row row_gray">' +
+                                    `                <div class="col-xl-5">${kit}</div>` +
+                                    `                <div class="col-xl-3 options">` +
+                                    `                    ${nameAventos}` +
+                                    '                </div>' +
+                                    `               <div class="col-xl-3 options">` +
+                                    `                       ${costAventos}`+
+                                    '               </div>' +
+                                    '            </div>'
                             }
                         } else {
                             var index = 0
@@ -478,7 +581,7 @@
                                 costAventos = costAventos.toFixed(2)
                                 costAventos = costAventos + "€"
                             }
-                            content += '<tr>'
+                            /*content += '<tr>'
                             content += '<th>'
                             content += kit
                             content += '</th>'
@@ -488,29 +591,28 @@
                             content += '<td>'
                             content += costAventos
                             content += '</td>'
-                            content += '</tr>'
+                            content += '</tr>'*/
+                            content += '<div class="row row_gray">' +
+                                `                <div class="col-xl-5">${kit}</div>` +
+                                `                <div class="col-xl-3 options ${options_last_child}">` +
+                                `                    ${nameAventos}` +
+                                '                </div>' +
+                                `               <div class="col-xl-3 options ${options_last_child}">` +
+                                `                       ${costAventos}`+
+                                '               </div>' +
+                                '            </div>'
                         }
                     }
                 }
-                content += '</table>'
+                content += '<div class="row row_gray row_max">' +
+                    '<div class="col-xl-12 description">Наш калькулятор автоматически предлагает, все типы подъемников,\n' +
+                    'подходящие под выбранные Вами характеристика фасада.</div>' +
+                    '</div>'
+
                 $("#divAventosTypesV2").html(content)
 
-                $('.euro').on("click",function(){
-                    nationalCurrency = false
-                    CreateTableToAventosKits2(response)
-                });
-                $('.rub').on("click",function(){
-                    nationalCurrency = true
-                    CreateTableToAventosKits2(response)
-                });
-                $('#btnWithOutTipOn').click(function(){
-                    tipon = false
-                    CreateTableToAventosKits2(response)
-                });
-                $('#btnWitTipOn').click(function(){
-                    tipon = true
-                    CreateTableToAventosKits2(response)
-                });
+
+
                 $('#myModal__close, #myOverlay').click(function () {
                     discount_one = $('input[name="discount_radio"]:checked').val();
                     discount_two = $("input[name=amount_discount]").val()
@@ -563,13 +665,24 @@
             $(".form_image div").css("display", "none");
             $("#dsp").css("display", "block");
 
-            $(".calculator input").bind("change", function () {
+            $(".CalcPad input").bind("change", function () {
                 Calculate();
             })
 
-            $(".calculator select").bind("change", function () {
+            $(".CalcPad select").bind("change", function () {
                 var plotnost = parseFloat($("select[name=plotnost]").val().toString().replace(/,/, "."));
                 $("input[name=plotnostInput]").val(PlotnArray[plotnost]['PLOTN']);
+                if($("select[name=currency]").val() == 0) {
+                    nationalCurrency = false
+                } else {
+                    nationalCurrency = true
+                }
+                if($("select[name=opening_type]").val() == 0) {
+                    tipon = false
+                } else {
+                    tipon = true
+                }
+
                 //ShowPictureType();
                 //setDefaultValue()
 
@@ -585,77 +698,114 @@
             createTableFacadeResult();
         });
     </script>
+
     <div class="CalcPad">
         <h2>Подбор комплекта AVENTOS в зависимости от размеров фасада</h2><br>
+        <div class="row">
+            <div class="col-xl-5">
+                <div class="shadow">
+                    <div class="row">
+                        <div class="col-xl-12 title_cal">
+                            <span>Расчет веса фасада</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-6"></div>
+                        <div class="col-xl-5 title_div_table">Значение</div>
+                    </div>
+                    <div class="row row_gray">
+                        <div class="col-xl-6">Материал фасада, кг/м3</div>
+                        <div class="col-xl-5 options">
+                            <select name="plotnost" class="PlotnostSel ">
+                                <option value="0">МДФ</option>
+                                <option value="1">ДСП</option>
+                            </select>
+                            <input type="text" name="plotnostInput" value="0">
+                        </div>
+                    </div>
+                    <div class="row row_gray">
+                        <div class="col-xl-6">Толщина, мм</div>
+                        <div class="col-xl-5 options">
+                            <input type="text" name="tolsh" value="19">
+                        </div>
+                    </div>
+                    <div class="row row_gray">
+                        <div class="col-xl-6">Вес ручки, кг</div>
+                        <div class="col-xl-5 options">
+                            <select name="handleWeight" class="handleWeightClass">
+                                <option value="0">Без ручки</option>
+                                <option value="1">0,1 Легкая</option>
+                                <option value="2">0,2 Легкая</option>
+                                <option value="3">0,5 Средняя</option>
+                                <option value="4">1,0 Тяжелая</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row row_gray">
+                        <div class="col-xl-6">Высота, мм</div>
+                        <div class="col-xl-5 options">
+                            <input type="text" name="height" value="0">
+                        </div>
+                    </div>
+                    <div class="row row_gray">
+                        <div class="col-xl-6">Ширина, мм</div>
+                        <div class="col-xl-5 options">
+                            <input type="text" name="width" value="0">
+                        </div>
+                    </div>
+                    <div class="row row_gray">
+                        <div class="col-xl-6">Вес двери, кг</div>
+                        <div class="col-xl-5 options">
+                            <span class="result"></span>
+                        </div>
+                    </div>
+                    <div class="row row_gray">
+                        <div class="col-xl-6">Коэффициент мощности, кг</div>
+                        <div class="col-xl-5 options">
+                            <span class="result_km"></span>
+                        </div>
+                    </div>
+                    <div class="row row_gray">
+                        <div class="col-xl-6">Валюта</div>
+                        <div class="col-xl-5 options">
+                            <select name="currency" class="">
+                                <option value="0">Евро</option>
+                                <option value="1">Рубли</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row row_gray">
+                        <div class="col-xl-6">Тип открывание</div>
+                        <div class="col-xl-5 options options_last-child">
+                            <select name="opening_type" class="">
+                                <option value="0">BLUMOTION (с доводчиком)</option>
+                                <option value="1">TIP-ON (открывание без ручки)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row row_gray row_max">
+                        <div class="col-xl-12 description">
+                            Расчет веса фасадов (м) х Ширина фасада (м) х Толщина фасадов х Плотность(кг/м3)<br>
+                            <span class="red_text">Калькулятор носит рекомендательный характер!!!</span><br>
+                            Точный вес фасадов из различных материалов определяется взвешиванием.<br>
+                            При выборе силового механизма учитывайте вес ручки<br>
+                            AVENTOS HF, HL, HS + вес ручки<br>
+                            AVENTOS HK, HK-S, HK-XS + двойной вес ручки
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-5">
+                <div id="divAventosTypesV2" class="shadow">
 
-        <table class="calculator">
-            <tbody><tr>
-                <th colspan="2">Расчет веса фасада</th>
-            </tr>
-            <tr>
-                <td class="head">Материал фасада, кг/м3</td>
-                <td>
-                    <select name="plotnost" class="PlotnostSel">
-                        <option value="0">МДФ</option>
-                        <option value="1">ДСП</option>
-                    </select>
-                    <input type="text" name="plotnostInput" value="0">
-                </td>
-            </tr>
-            <tr>
-                <td class="head">Толщина, мм</td>
-                <td><input type="text" name="tolsh" value="19"></td>
-            </tr>
-            <tr>
-                <td class="head">Вес ручки, кг</td>
-                <td>
-                    <select name="handleWeight" class="handleWeightClass">
-                        <option value="0">Без ручки</option>
-                        <option value="1">0,1 Легкая</option>
-                        <option value="2">0,2 Легкая</option>
-                        <option value="3">0,5 Средняя</option>
-                        <option value="4">1,0 Тяжелая</option>
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <td class="head">Высота, мм</td>
-                <td><input type="text" name="height" value="0"></td>
-            </tr>
-            <tr>
-                <td class="head">Ширина, мм</td>
-                <td><input type="text" name="width" value="0"></td>
-            </tr>
-            <tr>
-                <td class="head">Вес двери, кг</td>
-                <td class="result">0.00</td>
-            </tr>
-            <tr>
-                <td class="head">Коэффициент мощности, кг</td>
-                <td class="result_km">0</td>
-            </tr>
-            <tr>
-                <td colspan=2 class="head">
-                    Расчет веса фасадов (м) х Ширина фасада (м) х Толщина фасадов х Плотность(кг/м3)<br>
-                    <span class="red_text">Калькулятор носит рекомендательный характер!!!</span><br>
-                    Точный вес фасадов из различных материалов определяется взвешиванием.<br>
-                    При выборе силового механизма учитывайте вес ручки<br>
-                    AVENTOS HF, HL, HS + вес ручки<br>
-                    AVENTOS HK, HK-S, HK-XS + двойной вес ручки</td>
-            </tr>
-            </tbody></table>
+                </div>
+            </div>
+        </div>
+
 
 
 
     </div>
-    <h2>Наш калькулятор автоматически предлагает, все типы подъемников,<br>подходящие под выбранные Вами характеристика фасада.</h2>
-    <div id="divAventosTypes"></div>
-    <!-- h2>Таблица для подбора коэффициента мощности вручную.</h2>
-    <div id="table_result"></div-->
-    <div id="divAventosTypesV2"></div>
-
-    </tr>
-    </table>
 
     <div id="myModal">
         <!-- span id="myModal__close" class="close">ₓ</span -->
