@@ -290,6 +290,7 @@
     </ul>
 </div>
 <div id="wraps_hover_none">
+
     <script type="text/javascript">
         // var
         let facade_width =  [400, 450, 500, 550, 600, 700, 800, 900, 1000, 1200, 1500, 1800];
@@ -445,7 +446,8 @@
             // Запрос к серверу на получение комплектов подемников
             function GetAventosTypesAvalide(plotnost, tolsh, width, height, handleWeightVar) {
                 data = {"handleWeight": handleWeightVar, "height": height, "thickness": tolsh, "width": width, "density": plotnost};
-                url = "http://util.kdm-itkt.ru/api/v2/aventos/"
+                url = "http://util.kdm-itkt.ru/api/v2/aventos/";
+                //url = "http://127.0.0.1:8000/api/v2/aventos/";
                 $.ajax({
                     'type': 'POST',
                     'url': url,
@@ -765,7 +767,7 @@
                             <span class="result_km"></span>
                         </div>
                     </div>
-                    <div class="row row_gray">
+                    <!-- div class="row row_gray">
                         <div class="col-xl-6">Валюта</div>
                         <div class="col-xl-5 options">
                             <select name="currency" class="">
@@ -773,7 +775,7 @@
                                 <option value="1">Рубли</option>
                             </select>
                         </div>
-                    </div>
+                    </div -->
                     <div class="row row_gray">
                         <div class="col-xl-6">Тип открывание</div>
                         <div class="col-xl-5 options options_last-child">
