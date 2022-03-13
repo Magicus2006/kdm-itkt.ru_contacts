@@ -674,11 +674,11 @@
             $(".CalcPad select").bind("change", function () {
                 var plotnost = parseFloat($("select[name=plotnost]").val().toString().replace(/,/, "."));
                 $("input[name=plotnostInput]").val(PlotnArray[plotnost]['PLOTN']);
-                if($("select[name=currency]").val() == 0) {
+                /*if($("select[name=currency]").val() == 0) {
                     nationalCurrency = false
                 } else {
                     nationalCurrency = true
-                }
+                }*/
                 if($("select[name=opening_type]").val() == 0) {
                     tipon = false
                 } else {
