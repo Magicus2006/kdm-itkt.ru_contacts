@@ -122,7 +122,7 @@ class AventosCalculator {
     }
 
     setRequest() {
-        let url = "http://127.0.0.1:8000/l/"
+        let url = "http://util.kdm-itkt.ru/l/"
         this.ajaxRequest(url)
     }
 
