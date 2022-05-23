@@ -1,6 +1,6 @@
 class AventosCalculator {
     constructor(functionResult, currencyRate) {
-        //this.currency = 140.00
+        this.currency = 69
         this.initialData = { plotnostSel: 780,
             thickness: 16,
             handleWeightClass: 0,
@@ -27,7 +27,7 @@ class AventosCalculator {
         heightFacadeInput.addEventListener('change', this)
         widthFacadeInput.addEventListener('change', this)
         openingType.addEventListener('change', this)
-        //currency.addEventListener('change', this)
+        currency.addEventListener('change', this)
 
         this.initialData["plotnostSel"] = parseFloat(plotnostSel.value)
         thickness.value = this.initialData["thickness"]
