@@ -7,7 +7,7 @@ class AventosCalculator {
             heightFacadeInput: 370,
             widthFacadeInput: 800,
             openingType: false,
-            currency: 0,
+            currency: 1,
             discountOne: 0,
             discountTwo: 0}
 
