@@ -38,7 +38,7 @@
 
     <style>
         #myModal {
-            width: 320px; height: 140px;
+            width: 320px; height: 160px;
             padding: 0;
             border-radius: 4px;
             background: #fafafa;
@@ -316,7 +316,6 @@
     </div>
 
     <div id="myModal">
-        <!-- span id="myModal__close" class="close">ₓ</span -->
         <form>
             <table class="table_discount">
                 <tbody>
@@ -325,14 +324,20 @@
                 </tr>
                 <tr>
                     <td colspan="2">
-                        <input type="radio" name="discount_radio" value="-45" checked> Розница
-                        <input type="radio" name="discount_radio" value="0">Юр. Лица
+                        <input type="radio" name="discount_radio" value="-45" checked> Розница <br>
+                        <input type="radio" name="discount_radio" value="0">Юр. Лица (Розница-31%)
                     </td>
                 </tr>
                 <tr>
-                    <td class="head">Поцент, %</td>
+                    <td class="head">Скидка, %</td>
                     <td>
                         <input type="number" min="0" max="100" step="0.1" name="amount_discount" value="0">%
+                    </td>
+                </tr>
+                <tr>
+                    <td class="head">Наценка, %</td>
+                    <td>
+                        <input type="number" min="0" max="100" step="0.1" name="amount_markup" value="0">%
                     </td>
                 </tr>
                 <tr>
