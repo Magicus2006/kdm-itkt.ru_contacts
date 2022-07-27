@@ -74,16 +74,13 @@
             font-size: 16px;
         }
         .table_discount td {
-            border: 1px solid #f17336;
+            border: 1px solid #C8193B;
             text-align:center;
         }
 
         .table_discount th {
-            border-bottom: 1px solid #f17336;
-            border-right: 1px solid #f17336;
-            border-left: 1px solid #f17336;
-            border-top: 1px solid #f17336;
-            background: #f17336;
+            border: 1px solid #C8193B;
+            background: #C8193B;
             padding: 8px 0 8px 0;
             color: #fff;
             font-weight: bold;
@@ -363,9 +360,9 @@
         $('#myModal__close, #myOverlay').click(function () {
             liftsCalculator.discount_one = $('input[name="discount_radio"]:checked').val();
             liftsCalculator.discount_two = $("input[name=amount_discount]").val()
-            //CreateTableToAventosKits2(response)
-            liftsCalculator.setRequest();
             liftsCalculator.markup = $('input[name="amount_markup"]').val();
+
+            liftsCalculator.setRequest();
 
 
             $('#myModal').animate({opacity: 0}, 198, function () {

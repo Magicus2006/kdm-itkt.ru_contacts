@@ -1,4 +1,10 @@
 class AventosCalculator {
+    // Установка наценки
+    markup = 0;
+    // Скидка
+    discount_one = 0;
+    discount_two = 0;
+
     constructor(functionResult, currencyRate) {
         //this.currency = 140.00
         this.initialData = { plotnostSel: 780,
@@ -70,16 +76,22 @@ class AventosCalculator {
         this.setRequest()
     }
 
-    showResult() {
+    // Расчет все наценок и скидок
+    setCost() {
         const rate = this.currencyRate[this.initialData["currency"]]
         const discountOne = this.initialData["discountOne"]
         const discountTwo = this.initialData["discountTwo"]
 
         this.initialData["data"] = this.currencyCost(this.initialData["data"], rate) // Расчет валюты
         this.initialData["data"] = this.discount(this.initialData["data"], discountOne, discountTwo)
+    }
 
+    showResult() {
+        // Устанавливаем цену на товар
+        this.setCost()
+
+        console.log(this.initialData["data"])
         eval(this.functionResult)(this.initialData["data"], this.initialData["openingType"])
-        //CreateTableToAventosKits2(this.initialData["data"], this.initialData["openingType"])
 
     }
 
@@ -126,14 +138,18 @@ class AventosCalculator {
         this.ajaxRequest(url)
     }
 
-    discount(data, one, two) {
+    discount(data) {
         for(var key in data) {
             for (var key1 in data[key]) {
                 for (var key2 in data[key][key1]) {
                     for (var key3 in data[key][key1][key2]) {
                         if(key3 == "cost") {
-                            data[key][key1][key2][key3] = data[key][key1][key2][key3] - data[key][key1][key2][key3] * one / 100
-                            data[key][key1][key2][key3] = data[key][key1][key2][key3] - data[key][key1][key2][key3] * two / 100
+                            // Для расчета скидки розницы vs опт
+                            data[key][key1][key2][key3] = data[key][key1][key2][key3] - data[key][key1][key2][key3] * this.discount_one / 100
+                            // Для расчета индивидуальной скидки
+                            data[key][key1][key2][key3] = data[key][key1][key2][key3] - data[key][key1][key2][key3] * this.discount_two / 100
+                            // Наценка
+                            data[key][key1][key2][key3] = data[key][key1][key2][key3] + data[key][key1][key2][key3] * this.markup / 100
                         }
                     }
                 }

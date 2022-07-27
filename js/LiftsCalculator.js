@@ -1,6 +1,7 @@
 class LiftsCalculator {
     // Установка наценки
     markup = 0;
+    // Скидка
     discount_one = 0;
     discount_two = 0;
 
@@ -74,7 +75,8 @@ class LiftsCalculator {
         this.calculationAvetos()
         this.setRequest()
     }
-    // Установка настроек цены товара
+
+    // Расчет все наценок и скидок
     setCost() {
         const rate = this.currencyRate[this.initialData["currency"]]
         const discountOne = this.initialData["discountOne"]
@@ -85,7 +87,7 @@ class LiftsCalculator {
     }
 
     showResult() {
-        // Усстанавливаем цену на товар
+        // Устанавливаем цену на товар
         this.setCost()
 
         console.log(this.initialData["data"])
