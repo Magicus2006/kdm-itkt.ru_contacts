@@ -24,7 +24,7 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
     <script type="text/javascript" src="/js/createTableToAventos.js"></script>
-    <script type="text/javascript" src="/js/liftsCalculator.js"></script>
+    <script type="text/javascript" src="/js/LiftsCalculator.js"></script>
 
     <title>Калькулятор DTC</title>
     <link rel="shortcut icon" href="/favicon.png" type="image/x-icon">
@@ -32,8 +32,7 @@
     <script type="text/javascript">
         //                 rub, eur
         const currency = [ 1  , 66];
-        var discount_one = -45;
-        var discount_two = 0;
+
     </script>
 
     <style>
@@ -354,17 +353,20 @@
     <p>2022 © "Комплектующие для мебели" - продажа фурнитуры для мебели</p>
 
     <script async>
-        let aventosCalculator = new AventosCalculator(CreateTableToAventosKits2 ,currency);
-        aventosCalculator.setRequest();
-        aventosCalculator.setDiscount(discount_one, discount_two)
+        let liftsCalculator = new LiftsCalculator(CreateTableToAventosKits2 ,currency);
+        liftsCalculator.discount_one = -45;
+        liftsCalculator.discount_two = 0;
+        liftsCalculator.markup = 0;
+        liftsCalculator.setRequest();
     </script>
     <script>
         $('#myModal__close, #myOverlay').click(function () {
-            discount_one = $('input[name="discount_radio"]:checked').val();
-            discount_two = $("input[name=amount_discount]").val()
+            liftsCalculator.discount_one = $('input[name="discount_radio"]:checked').val();
+            liftsCalculator.discount_two = $("input[name=amount_discount]").val()
             //CreateTableToAventosKits2(response)
-            aventosCalculator.setDiscount(discount_one, discount_two)
-            console.log(discount_one)
+            liftsCalculator.setRequest();
+            liftsCalculator.markup = $('input[name="amount_markup"]').val();
+
 
             $('#myModal').animate({opacity: 0}, 198, function () {
                 $(this).css('display', 'none');
