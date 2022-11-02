@@ -14,6 +14,9 @@
             webvisor:true
         });
     </script>
+    <script>
+        window.addEventListener('storage', (event) => console.log(event));
+    </script>
     <noscript><div><img src="https://mc.yandex.ru/watch/88924843" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
     <!-- /Yandex.Metrika counter -->
     <meta charset="utf-8">
@@ -74,16 +77,13 @@
             font-size: 16px;
         }
         .table_discount td {
-            border: 1px solid #f17336;
+            border: 1px solid #C8193B;
             text-align:center;
         }
 
         .table_discount th {
-            border-bottom: 1px solid #f17336;
-            border-right: 1px solid #f17336;
-            border-left: 1px solid #f17336;
-            border-top: 1px solid #f17336;
-            background: #f17336;
+            border: 1px solid #C8193B;
+            background: #C8193B;
             padding: 8px 0 8px 0;
             color: #fff;
             font-weight: bold;
@@ -315,36 +315,38 @@
     </div>
 
     <div id="myModal">
-        <form>
-            <table class="table_discount">
-                <tbody>
-                <tr>
-                    <th colspan="2" style="color: #000000">Установить скидку</th>
-                </tr>
-                <tr>
-                    <td colspan="2">
-                        <input type="radio" name="discount_radio" value="-45" checked> Розница <br>
-                        <input type="radio" name="discount_radio" value="0">Юр. Лица (Розница-31%)
-                    </td>
-                </tr>
-                <tr>
-                    <td class="head">Скидка, %</td>
-                    <td>
-                        <input type="number" min="0" max="100" step="0.1" name="amount_discount" value="0">%
-                    </td>
-                </tr>
-                <tr>
-                    <td class="head">Наценка, %</td>
-                    <td>
-                        <input type="number" min="0" max="100" step="0.1" name="amount_markup" value="0">%
-                    </td>
-                </tr>
-                <tr>
-                    <th colspan="2" class="menu_button" id="myModal__close">Применить скидку</th>
-                </tr>
-                </tbody>
-            </table>
-        </form>
+
+            <form>
+                <table class="table_discount">
+                    <tbody>
+                    <tr>
+                        <th colspan="2" style="color: #000000">Установить скидку</th>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <input type="radio" name="discount_radio" value="-45" checked> Розница <br>
+                            <input type="radio" name="discount_radio" value="0">Юр. Лица (Розница-31%)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="head">Скидка, %</td>
+                        <td>
+                            <input type="number" min="0" max="100" step="0.1" name="amount_discount" value="0">%
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="head">Наценка, %</td>
+                        <td>
+                            <input type="number" min="0" max="100" step="0.1" name="amount_markup" value="0">%
+                        </td>
+                    </tr>
+                    <tr>
+                        <th colspan="2" class="menu_button" id="myModal__close">Применить скидку</th>
+                    </tr>
+                    </tbody>
+                </table>
+            </form>
+
     </div>
     <div id="myOverlay"></div>
 
@@ -354,18 +356,34 @@
 
     <script async>
         let liftsCalculator = new LiftsCalculator(CreateTableToAventosKits2 ,currency);
-        liftsCalculator.discount_one = -45;
-        liftsCalculator.discount_two = 0;
-        liftsCalculator.markup = 0;
+
+        liftsCalculator.discount_one = localStorage.getItem('discount_one') ? localStorage.getItem('discount_one') : -45;
+        liftsCalculator.discount_two = localStorage.getItem('discount_two') ? localStorage.getItem('discount_two') : 0;
+        liftsCalculator.markup = localStorage.getItem('markup') ? localStorage.getItem('markup') : 0;
+
+        console.log(localStorage.getItem('discount_one'));
+        console.log(localStorage.getItem('discount_two'));
+        console.log(localStorage.getItem('markup'));
+
         liftsCalculator.setRequest();
     </script>
     <script>
         $('#myModal__close, #myOverlay').click(function () {
-            liftsCalculator.discount_one = $('input[name="discount_radio"]:checked').val();
-            liftsCalculator.discount_two = $("input[name=amount_discount]").val()
-            //CreateTableToAventosKits2(response)
+            liftsCalculator.discount_one = +$('input[name="discount_radio"]:checked').val();
+            liftsCalculator.discount_two = +$("input[name=amount_discount]").val()
+            liftsCalculator.markup = +$('input[name="amount_markup"]').val();
+
+            localStorage.setItem('discount_one', liftsCalculator.discount_one);
+            localStorage.setItem('discount_two', liftsCalculator.discount_two);
+            localStorage.setItem('markup', liftsCalculator.markup);
+
+            console.log(localStorage.getItem('discount_one'));
+            console.log(localStorage.getItem('discount_two'));
+            console.log(localStorage.getItem('markup'));
+
+
+
             liftsCalculator.setRequest();
-            liftsCalculator.markup = $('input[name="amount_markup"]').val();
 
 
             $('#myModal').animate({opacity: 0}, 198, function () {
@@ -377,7 +395,10 @@
         document.addEventListener("keydown", function(e) {
             //keys[e.which] = true;
             if (e.key == 1 && e.ctrlKey  &&  e.altKey) { // Ctrl + Alt + 1 in that order
-                console.log("pressed");
+
+                $('input[name="discount_radio"][value="'+liftsCalculator.discount_one+'"]').prop('checked', true);
+                $("input[name=amount_discount]").val(liftsCalculator.discount_two)
+                $('input[name="amount_markup"]').val(liftsCalculator.markup);
                 $('#myOverlay').fadeIn(297, function () {
                     $('#myModal')
                         .css('display', 'block')
@@ -386,10 +407,9 @@
 
             }
         });
-        /*document.keyup(function (e) {
-            delete keys[e.which];
-        });*/
+
     </script>
+
 </div>
 </body>
 </html>

@@ -38,7 +38,7 @@
 
     <style>
         #myModal {
-            width: 320px; height: 140px;
+            width: 320px; height: 160px;
             padding: 0px 0px;
             border-radius: 4px;
             background: #fafafa;
@@ -332,7 +332,6 @@
     </div>
 
     <div id="myModal">
-        <!-- span id="myModal__close" class="close">ₓ</span -->
         <form>
             <table class="table_discount">
                 <tbody>
@@ -341,14 +340,20 @@
                 </tr>
                 <tr>
                     <td colspan="2">
-                        <input type="radio" name="discount_radio" value="0" checked> Розница
-                        <input type="radio" name="discount_radio" value="25">Юр. Лица
+                        <input type="radio" name="discount_radio" value="0" checked> Розница <br>
+                        <input type="radio" name="discount_radio" value="25">Юр. Лица (Розница -25%)
                     </td>
                 </tr>
                 <tr>
-                    <td class="head">Поцент, %</td>
+                    <td class="head">Скидка, %</td>
                     <td>
                         <input type="number" min="0" max="100" step="0.1" name="amount_discount" value="0">%
+                    </td>
+                </tr>
+                <tr>
+                    <td class="head">Наценка, %</td>
+                    <td>
+                        <input type="number" min="0" max="100" step="0.1" name="amount_markup" value="0">%
                     </td>
                 </tr>
                 <tr>
@@ -366,16 +371,19 @@
 
     <script async>
         let aventosCalculator = new AventosCalculator(CreateTableToAventosKits2 ,currency);
+        aventosCalculator.discount_one = 0;
+        aventosCalculator.discount_two = 0;
+        aventosCalculator.markup = 0;
         aventosCalculator.setRequest();
-        aventosCalculator.setDiscount(discount_one, discount_two)
+
     </script>
     <script>
         $('#myModal__close, #myOverlay').click(function () {
-            discount_one = $('input[name="discount_radio"]:checked').val();
-            discount_two = $("input[name=amount_discount]").val()
-            //CreateTableToAventosKits2(response)
-            aventosCalculator.setDiscount(discount_one, discount_two)
-            console.log(discount_one)
+            aventosCalculator.discount_one = $('input[name="discount_radio"]:checked').val();
+            aventosCalculator.discount_two = $("input[name=amount_discount]").val()
+            aventosCalculator.markup = $('input[name="amount_markup"]').val();
+
+            aventosCalculator.setRequest();
 
             $('#myModal').animate({opacity: 0}, 198, function () {
                 $(this).css('display', 'none');

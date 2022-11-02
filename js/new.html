@@ -1,0 +1,159 @@
+<!DOCTYPE HTML>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Название страницы</title>
+  <meta name="description" content="Описание страницы" />
+
+  <link rel="stylesheet" type="text/css" href="/assets/css/style.css" />
+  <link rel="icon" href="/img/favicon.png">
+  <script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
+
+  <!--[if lt IE 9]>
+  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <style>
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+    }
+</style>
+
+<style>
+    /* Header */
+    header {
+      background-color: #ffffff;
+      height: 83px;
+      overflow: hidden;
+      margin: 0;
+      /*background: no-repeat center center cover;*/
+      display: block;
+      border: 0px;
+      position: relative;
+      padding: 0;
+
+    }
+
+    #header-e1, #header-e2, #header-e3 {
+      background-color: white;
+    }
+
+    .helper {
+      display: inline-block;
+      height: 100%;
+      vertical-align: middle;
+    }
+
+    #header-e1 {
+      float: left;
+      width:33%;
+      height: 100%;
+      vertical-align: bottom;
+      justify-content: center;
+    }
+    #header-e1 img {
+      vertical-align: middle;
+      justify-content: center;
+    }
+    #header-e2 {
+      float: left;
+      text-align: center;
+      width:33%;
+    }
+    #header-e3 {
+      float: left;
+      width:33%;
+    }
+</style>
+
+<style>
+    /* Navigaterion */
+    nav {
+      background-color: #484450;
+      height: 30px;
+    }
+
+    nav ul {
+      display: table-row;
+      height: 30px;
+    }
+    nav li {
+      display: table-cell;
+      background: #484450;
+      /*background: #fd7c47;*/
+      margin: 0;
+      padding: 0;
+    }
+    nav ul li:hover, nav a:hover {
+      background: #fd7c47;
+    }
+    nav li a {
+      display: block;
+      padding: 8px 20px;
+      text-align: center;
+      font-weight: 700;
+      font-size: 12px;
+      color: #fff;
+      text-decoration: none !important;
+    }
+</style>
+
+<style>/* Header */
+
+    #wrap {
+      background-color: white;
+      min-height: 100%;
+    }
+    main {
+      background-color: #00FF00;
+      padding-bottom: 100px;
+      /*Высота футера*/
+    }
+    aside {
+      background-color: #484450;
+    }
+    footer {
+      margin-left: 0;
+      margin-right: 0;
+      background-color: #0000FF;
+      margin-top: -100px;
+      /*Минус Высота футера*/
+      height: 100px;
+      /*Высота футера*/
+    }
+
+
+  </style>
+</head>
+<body>
+<div id="wrap">
+  <header>
+    <div id="header-e1">
+      <span class="helper"></span><img src="/image/base/kdm_logo.png" alt="Комплектующие для мебели" title="Комплектующие для мебели" width="192px" height="47px">
+    </div>
+    <div id="header-e2">
+      <img src="/image/base/kdm_logo.png" alt="Комплектующие для мебели" title="Комплектующие для мебели" width="192px" height="47px">
+    </div>
+    <div id="header-e3">
+      <img src="/image/base/kdm_logo.png" alt="Комплектующие для мебели" title="Комплектующие для мебели" width="192px" height="47px">
+    </div>
+  </header>
+  <nav>
+    <ul>
+      <li><a href="/calc.html">Калькулятор</a></li>
+      <li><a href="/contacts">Контакты</a></li>
+    </ul>
+  </nav>
+  <main>
+    <section>
+      <h1>Заголовок страницы</h1>
+      Основная часть
+    </section>
+  </main>
+</div>
+<footer>
+  Подвал
+</footer>
+</body>
+</html>
