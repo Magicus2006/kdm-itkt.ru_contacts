@@ -135,7 +135,7 @@ class LiftsCalculator {
     }
 
     setRequest() {
-        let url = "http://util.kdm-itkt.ru/l/"
+        let url = "https://util.kdm-itkt.ru/l/"
         //let url = "http://127.0.0.1:8000/l/"
         this.ajaxRequest(url)
     }

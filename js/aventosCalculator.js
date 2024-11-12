@@ -134,7 +134,7 @@ class AventosCalculator {
     }
 
     setRequest() {
-        let url = "http://util.kdm-itkt.ru/api/v2/aventos/"
+        let url = "https://util.kdm-itkt.ru/api/v2/aventos/"
         this.ajaxRequest(url)
     }
 
